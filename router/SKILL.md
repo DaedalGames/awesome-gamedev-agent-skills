@@ -38,13 +38,16 @@ new engine or concern (router step 6).
 3. **Resolve** — the minimal set: engine skill(s) + discipline(s) + genre + workflow(s). §3.
 4. **Read (disclosure)** — open only the chosen `SKILL.md` bodies; `references/` only on demand. §4.
 5. **Compose** — order: engine fundamentals → discipline concept → genre glue → workflow. §5.
-6. **Fallback** — engine unknown or no skill fits → ask or default to Godot; state any gap. §6.
+6. **Fallback** — preserve existing engines, including custom/proprietary ones; bind missing APIs
+   from project evidence and state any gap. For a new project with no engine preference, see §6.
 
 ---
 
 ## 1. Engine detection (project fingerprint)
 
-Scan for the highest-confidence signal; **choose exactly one** engine. Stop at the first match.
+Scan for the highest-confidence signal; **choose exactly one** engine for the target project.
+An explicitly identified custom/proprietary engine is a valid result even without a catalog skill.
+Check the target's build and runtime entry point before treating a bundled library/tool as its engine.
 
 | # | Engine | Primary signal | Skill set root |
 |:-:|--------|----------------|----------------|
@@ -194,7 +197,8 @@ skill's `feel-tuning.md` reference if you want coyote-time/buffering."*
 
 ## 5. Composition rules
 
-- **One engine set, additive concepts.** Exactly one engine skill set; add the disciplines the
+- **One engine, additive concepts.** Use its engine skill set when available; for an unsupported
+  engine, use project evidence as the API binding instead. Add the disciplines the
   task needs and usually **at most one** genre. Workflows attach independently.
 - **Order:** engine fundamentals → discipline concept → genre orchestration → workflow. For asset
   production, approve the visual target before generating a family, then finish with the engine
@@ -213,12 +217,17 @@ skill's `feel-tuning.md` reference if you want coyote-time/buffering."*
 1. Check the request for a plain-text engine name ("in Unity", "using Phaser"). If found, adopt it.
 2. If the task is a pure concept/genre/workflow question, route straight to the engine-agnostic
    discipline/genre/workflow skill — no engine needed ("what's a good save format?" → `save-systems`).
-3. Only if engine choice actually blocks the answer, ask **one** targeted question ("Which engine —
-   Godot, Unity, Unreal, or a web/other engine?"). If the user has no preference and one is needed,
-   **default to Godot** (the most fully covered engine here) and say so.
+3. Only if engine choice actually blocks the answer, ask **one** targeted question about the
+   engine or project entry point. For a **new project** with no existing engine and no user
+   preference, **default to Godot** (the most fully covered engine here) and say so.
 4. Never invent an engine or load an engine skill on a guess.
 
-**Engine known but no skill covers the subtask:** load the closest engine skill plus the relevant
+**Custom, proprietary, in-house, or unsupported engine:** keep that engine and its toolchain.
+Read `references/custom-engines.md` to map the relevant discipline/genre concepts onto verified
+project APIs, using local documentation, headers/source, examples, and build/test commands.
+No catalog engine skill is required. Do not switch engines or invent a compatible API.
+
+**Catalog engine known but no skill covers the subtask:** load the closest skill for that same engine plus the relevant
 discipline and **state the gap** plainly (e.g. "no dedicated Unity 2D-movement skill; using
 `unity-csharp-scripting` + `unity-physics`"). Never fabricate a skill name.
 
@@ -231,6 +240,7 @@ and offer to load it if the user confirms.
 |---------|-----------------|--------------------------|
 | "add a double jump to my Godot player" | Godot (`project.godot`) | `godot-2d-movement` → `platformer` |
 | "make an inventory for my Unity RPG" | Unity (`Assets/`+`ProjectSettings/`) | `unity-scriptableobjects` → `rpg` → `save-systems` |
+| "add an inventory to my proprietary C++ RPG" | existing custom engine | custom-engine reference → `rpg` + `save-systems`; bind data/UI to verified project APIs |
 | "build a 2D puzzle in Go with Ebitengine" | Ebitengine (named; later `go.mod`) | `ebitengine-game` → `puzzle` |
 | "fix a stale HUD in my Go game" | Ebitengine (`go.mod` + game imports) | `ebitengine-game` → `game-ui-ux`; read text/UI, no new scaffold |
 | "add player movement to my Defold game" | Defold (`game.project`) | `defold-core` → `input-systems` |
@@ -248,3 +258,4 @@ and offer to load it if the user confirms.
 
 - Full engine fingerprints, secondary signals, and disambiguation: `references/engine-detection.md`.
 - Exhaustive per-skill trigger words, engine bindings, and binding gaps: `references/routing-table.md`.
+- Custom/proprietary or unsupported engine integration: `references/custom-engines.md`.
