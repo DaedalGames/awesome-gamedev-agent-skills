@@ -109,7 +109,7 @@ a real folder at `skills/<category>/<name>/SKILL.md`. Trigger words (`says:`) an
 
 | Genre skill | `says:` triggers | composes (bind `*` to the detected engine) |
 |-------------|------------------|---------------------------------------------|
-| `platformer` | platformer, jump mechanic, double jump, Mario-like | `godot-2d-movement` (or engine physics) + `godot-tilemap`/`unity-tilemap-2d` + `level-design` + `camera-systems` + `game-feel` |
+| `platformer` | platformer, jump mechanic, double jump, wall jump, wall slide, Mario-like | `godot-2d-movement` (or engine physics) + `godot-tilemap`/`unity-tilemap-2d` + `level-design` + `camera-systems` + `game-feel` |
 | `roguelike` | roguelike, procedural dungeon, permadeath, turn-based grid | `procedural-gen` + `godot-tilemap`/`unity-tilemap-2d` + `game-ai` + `save-systems` + `game-feel` |
 | `rpg` | RPG, stats/leveling, inventory, quest system | `godot-resources`/`unity-scriptableobjects` + `dialogue-systems` + `save-systems` + `game-ui-ux` |
 | `fps-shooter` | FPS, first-person shooter, hitscan, aim/shoot | `godot-3d-essentials`/`unreal-cpp-gameplay` + `input-systems` + `game-ai` + `camera-systems` + `game-feel` |
@@ -129,6 +129,11 @@ a real folder at `skills/<category>/<name>/SKILL.md`. Trigger words (`says:`) an
 | `itch-publish` | publish on itch, itch.io page, `butler push`, upload build; `.itch.toml` |
 
 ## Binding gaps (be honest; do not fabricate a skill)
+
+For a **custom, proprietary, in-house, or unsupported engine**, keep the engine and use the
+router's `custom-engines.md` reference. Load the relevant genre/discipline skills; replace
+catalog engine bindings with verified project APIs. Engine-specific names in composition
+tables are examples, not mandatory dependencies for portable genre systems.
 
 The collection does not yet have a skill for every engine × concept. Several cross-cutting
 concerns are now covered **engine-neutrally** by disciplines that pair with any detected engine —
